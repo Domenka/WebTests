@@ -1,4 +1,4 @@
-from pages import BasePage
+from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
 class LoginPageLocators:
@@ -11,11 +11,44 @@ class LoginPageLocators:
     SHOW_PASSWORD_BUTTON = (By.XPATH, '//button[.//span[text()="Показать пароль"]]')
     RECOVER_ACCESS_BUTTON = (By.XPATH, '//button[@aria-label="Не получается войти?"]')
     REGISTRATION_BUTTON = (By.XPATH, '//button[.//span[text()="Зарегистрироваться"]]')
-    LOGIN_VIA_VK = ['title="Войти через VK ID"']
-    LOGIN_VIA_MAIL = ['data-l="t,mailru"']
-    LOGIN_VIA_YANDEX = ['data-l="t,yandex"']
-    LOGIN_VIA_GOOGLE = ['data-l="t,google"']
-    LOGIN_VIA_APPLE = ['data-l="t,apple"']
+    LOGIN_VIA_VK = [By.CSS_SELECTOR, '[data-l="t,vkc"]']
+    LOGIN_VIA_MAIL = [By.CSS_SELECTOR, '[data-l="t,mailru"]']
+    LOGIN_VIA_YANDEX = [By.CSS_SELECTOR, '[data-l="t,yandex"]']
+    LOGIN_VIA_GOOGLE = [By.CSS_SELECTOR, '[data-l="t,google"]']
+    LOGIN_VIA_APPLE = [By.CSS_SELECTOR, '[data-l="t,apple"]']
+    LOGIN_ERROR_TEXT = [By.XPATH, '//*[text()="Введите логин"]']
+    PASSWORD_ERROR_TEXT = [By.XPATH, '//*[text()="Введите пароль"]']
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_FIELD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.LOGIN_BY_QR_BUTTON)
+        self.find_element(LoginPageLocators.SWITCH_LOGIN)
+        self.find_element(LoginPageLocators.SWITCH_QR)
+        self.find_element(LoginPageLocators.SHOW_PASSWORD_BUTTON)
+        self.find_element(LoginPageLocators.RECOVER_ACCESS_BUTTON)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
+        self.find_element(LoginPageLocators.LOGIN_VIA_VK)
+        self.find_element(LoginPageLocators.LOGIN_VIA_MAIL)
+        self.find_element(LoginPageLocators.LOGIN_VIA_YANDEX)
+        self.find_element(LoginPageLocators.LOGIN_VIA_GOOGLE)
+        self.find_element(LoginPageLocators.LOGIN_VIA_APPLE)
+
+    def login_click(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def set_login(self, text):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text)
+
+    def get_error_login_text(self):
+        return self.find_element(LoginPageLocators.LOGIN_ERROR_TEXT).text
+
+    def get_error_password_text(self):
+        return self.find_element(LoginPageLocators.PASSWORD_ERROR_TEXT).text
+
