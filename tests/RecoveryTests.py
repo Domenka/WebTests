@@ -24,7 +24,6 @@ def test_transfer_to_recovery_page(browser):
             LoginPage.login_click()
 
         LoginPage.click_recovery()
-
         RecoveryPage = RecoveryPageHelper(browser)
         RecoveryPage.check_page()
 
