@@ -13,12 +13,13 @@ BASE_URL = "https://ok.ru/"
 @allure.title("Проверка наличия текста ошибки при логине с пустыми кредами")
 def test_empty_login_and_password(browser):
     with allure.step("Открытие страницы"):
-     BasePage(browser).driver.get(BASE_URL)
-     LoginPage = LoginPageHelper(browser)
-     LoginPage.login_click()
-     with allure.step("Проверка соответствия текста ошибки"):
-         assert LoginPage.get_error_login_text() == PageTexts.EMPTY_LOGIN_ERROR.value
+        BasePage(browser).driver.get(BASE_URL)
 
+    login_page = LoginPageHelper(browser)
+    login_page.login_click()
+
+    with allure.step("Проверка соответствия текста ошибки"):
+        assert login_page.get_error_login_text() == PageTexts.EMPTY_LOGIN_ERROR.value
 
 @allure.suite("Тестирование формы авторизации")
 @allure.title("Проверка наличия текста ошибки при логине с пустым паролем")

@@ -21,6 +21,7 @@ class LoginPageLocators:
     LOGIN_VIA_APPLE = [By.CSS_SELECTOR, '[data-l="t,apple"]']
     LOGIN_ERROR_TEXT = [By.XPATH, '//*[text()="Введите логин"]']
     PASSWORD_ERROR_TEXT = [By.XPATH, '//*[text()="Введите пароль"]']
+    RECOVERY_AFTER_TRIES_BUTTON = [By.XPATH, '//a[contains(.,"Восстановить")]']
 
 
 class LoginPageHelper(BasePage):
@@ -63,3 +64,15 @@ class LoginPageHelper(BasePage):
     def get_error_password_text(self):
         self.attach_screenshot()
         return self.find_element(LoginPageLocators.PASSWORD_ERROR_TEXT).text
+
+    @allure.step("Заполнение пароля")
+    def set_wrong_password(self, text):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(text)
+        self.attach_screenshot()
+
+    @allure.step("Переход к восстановлению ")
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.RECOVERY_AFTER_TRIES_BUTTON).click()
+        self.attach_screenshot()
+
