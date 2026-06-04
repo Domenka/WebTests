@@ -44,26 +44,22 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.LOGIN_VIA_GOOGLE)
         self.find_element(LoginPageLocators.LOGIN_VIA_APPLE)
 
-
     @allure.step("Клик на кнопку авторизации")
     def login_click(self):
-     self.attach_screenshot()
-     self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
-
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
 
     @allure.step("Заполнение логина")
     def set_login(self, text):
-     self.attach_screenshot()
-     self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text)
-
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text)
 
     @allure.step("Возврат текста ошибки о пустом логине")
     def get_error_login_text(self):
-     self.attach_screenshot()
-     return self.find_element(LoginPageLocators.LOGIN_ERROR_TEXT).text
-
+        self.attach_screenshot()
+        return self.find_element(LoginPageLocators.LOGIN_ERROR_TEXT).text
 
     @allure.step("Возврат текста ошибки о пустом пароле")
     def get_error_password_text(self):
-     self.attach_screenshot()
-     return self.find_element(LoginPageLocators.PASSWORD_ERROR_TEXT).text
+        self.attach_screenshot()
+        return self.find_element(LoginPageLocators.PASSWORD_ERROR_TEXT).text

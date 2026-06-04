@@ -25,9 +25,11 @@ def test_empty_login_and_password(browser):
 def test_login_without_password(browser):
     faker = Faker()
     with allure.step("Открытие страницы"):
-     BasePage(browser).driver.get(BASE_URL)
-     LoginPage = LoginPageHelper(browser)
-     LoginPage.set_login(text=faker.name())
-     LoginPage.login_click()
-     with allure.step("Проверка соответствия текста ошибки"):
-       assert LoginPage.get_error_password_text() == PageTexts.EMPTY_PASSWORD_ERROR.value
+        BasePage(browser).driver.get(BASE_URL)
+
+    LoginPage = LoginPageHelper(browser)
+    LoginPage.set_login(text=faker.name())
+    LoginPage.login_click()
+
+    with allure.step("Проверка соответствия текста ошибки"):
+        assert LoginPage.get_error_password_text() == PageTexts.EMPTY_PASSWORD_ERROR.value
