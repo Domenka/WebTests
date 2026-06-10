@@ -18,6 +18,7 @@ def test_transfer_to_recovery_page(browser):
 
         LoginPage = LoginPageHelper(browser)
         LoginPage.set_login(text=faker.name())
+        LoginPage.set_wrong_password("1")
 
         for i in range(3):
             LoginPage.set_wrong_password("1")

@@ -8,7 +8,6 @@ from page_texts.PageTexts import PageTexts
 
 BASE_URL = "https://ok.ru/"
 
-
 @allure.suite("Тестирование формы авторизации")
 @allure.title("Проверка наличия текста ошибки при логине с пустыми кредами")
 def test_empty_login_and_password(browser):
