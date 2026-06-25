@@ -12,6 +12,12 @@ class BasePage:
             message="Element is not clickable."
         )
 
+    def find_elements(self, locator, time=5):
+        return WebDriverWait(self.driver, time).until(
+            EC.visibility_of_any_elements_located(locator),
+            message="Elements are not visible."
+        )
+
     @allure.step("Открытие страницы")
     def get_url(self, url):
         return self.driver.get(url)
