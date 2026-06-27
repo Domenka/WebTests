@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from pages.BasePage import BasePage
+from pages.BasePageHelper import BasePageHelper
 
 class RecoverPageLocators:
     SUPPORT_BUTTON = [By.XPATH, '//*[text()="Обратиться в службу поддержки"]']
@@ -7,7 +7,7 @@ class RecoverPageLocators:
     RECOVER_VIA_EMAIL_BUTTON = [By.CSS_SELECTOR, '[data-l="t,email"]']
     QR_CODE = [By.XPATH, '//*[@class="qr_code_image"]']
 
-class RecoveryPageHelper(BasePage):
+class RecoveryPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()

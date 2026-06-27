@@ -1,7 +1,7 @@
 import allure
 
 from core.BaseTest import browser
-from pages.BasePage import BasePage
+from pages.BasePageHelper import BasePageHelper
 from pages.LoginPage import LoginPageHelper
 from faker import Faker
 from page_texts.PageTexts import PageTexts
@@ -14,7 +14,7 @@ BASE_URL = "https://ok.ru/"
 def test_transfer_to_recovery_page(browser):
     with allure.step("Открытие страницы авторизации"):
         faker = Faker()
-        BasePage(browser).driver.get(BASE_URL)
+        BasePageHelper(browser).driver.get(BASE_URL)
 
         LoginPage = LoginPageHelper(browser)
         LoginPage.set_login(text=faker.name())
