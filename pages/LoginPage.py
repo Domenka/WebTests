@@ -1,6 +1,6 @@
 import allure
 
-from pages.BasePage import BasePage
+from pages.BasePageHelper import BasePageHelper
 from selenium.webdriver.common.by import By
 
 
@@ -24,7 +24,7 @@ class LoginPageLocators:
     RECOVERY_AFTER_TRIES_BUTTON = [By.XPATH, '//a[contains(.,"Восстановить")]']
 
 
-class LoginPageHelper(BasePage):
+class LoginPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
